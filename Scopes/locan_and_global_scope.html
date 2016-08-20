@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local and Global Scope</title>
+</head>
+<body>
+    <script>
+        // Global scope variables
+        var name = 'Bram';
+        var age = 23;
+        var length = 180;
+
+        // Now we create a function
+        function example() {
+            // All variables inside an function or object are defined local scope
+
+            // Local scope variables
+            var info = "Naam: " + name + ", leeftijd:" + age + ", lengte:" + length + "." ;
+            var sport = "fitness";
+            var hobby = "Surfen";
+
+            // We can access global scope variables anywhere we want, also inside functions and objects
+            // That means we can go with global scope variables a level deeper inside a local scope and still access these global scope variables.
+            console.log('Global scope variabelen opvragen binnen de local scope:')
+            console.log(name);
+            console.log(age);
+            console.log(length);
+        } // end example()
+
+        //call example function to see the output
+        example();
+
+        // new lines
+        console.log('\n\n');
+
+        // Now we try to access local scope variables inside the global scope.
+        // We should get an error now, because the variables are declared local
+        console.log('Local scope variabelen opvragen in de global scope (hier verwachten we een foutmelding: undefined)');
+        console.log(info);  // as you can see our editor already says unresolved variable
+        console.log(sport); // the program stops here because we get an error at line 34 (info variable cannot be found)
+        console.log(hobby);
+    </script>
+</body>
+</html>

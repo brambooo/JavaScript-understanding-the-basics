@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.create</title>
+</head>
+<body>
+    <script>
+        /*
+
+        Object.create is a method and another way of creating objects.
+        Instead of this we could in my opinion better use object literals or constructor functions
+
+        But it is always good to know that this is another way of creating objects!
+
+        The bad thing about this way is that we have to add enumerable, writable and configurable key/value pairs for every property we add to the object...
+
+         */
+
+        var person = Object.create(Object.prototype, {
+            name: {
+                value: 'Bram',
+                enumerable:true,
+                writable:true,
+                configurable:true
+            },
+           age: {
+               value: 23,
+               enumerable: true,
+               writable: true,
+               configurable: true
+           }
+        })
+
+        // Show properties of he object
+        console.log(person.name);
+        console.log(person.age);
+
+
+    </script>
+</body>
+</html>

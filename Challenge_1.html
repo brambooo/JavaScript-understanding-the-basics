@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Challenge 1</title>
+</head>
+<body>
+    <script>
+        // We gonna buy new phones here until our bankBallance is overwritten
+
+        // Variables
+        var bankBallance = 1000.00;
+        var amountBought = 0;       // total amount spend
+
+        // Constants
+        const TAX_RATE = 0.21;
+        const PHONE_PRICE = 150.00;
+        const ACCESSORY_PRICE = 4.50;
+        const SPENDING_TRESHOLD = 200;
+
+        // Buy phones while we have money
+        while(amountBought < bankBallance) {
+            // Buy a new phone
+            amountBought += PHONE_PRICE;
+
+            document.write('Bought a new Phone!'+ '</br>');
+            document.write('Uitgave = '+  amountBought + '</br>');
+
+            // Validate if we can buy any accessory (only buy it when we didn't go over the max spending threshold price)
+            if(amountBought < SPENDING_TRESHOLD) {
+                amountBought += ACCESSORY_PRICE;
+                document.write('Nieuwe gadget aangeschaft </br>');
+                document.write('Uitgave = '+  amountBought + '</br>');
+            }
+
+            // Pay taxes to the government over the amount we bought
+            var tax = addTax(amountBought);
+            // Add tax to amountbought
+            amountBought += tax;
+
+            document.write('Totale BTW over deze uitgave:' + tax + '</br>');
+            document.write('Totale nieuwe uitgave incl. BTW:' + amountBought + '</br>');
+
+            document.write('</br>');
+
+            // Last check, if we can afford a new purchase
+            if(amountBought > bankBallance) {
+                document.write('We kunnen geen nieuwe telefoon meer kopen. </br>');
+                document.write('Totale uitgaven:' + amountBought);
+            }
+
+        } // end while loop
+
+        // Functions
+
+        function addTax(amount) {
+            return amount * TAX_RATE;
+        }
+
+        function formatCurrency(amount) {
+            return '€' + amount.toFixed(2).replace('.', ',');
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For loop</title>
+</head>
+<body>
+    <script>
+        // For loop die checkt of een waarde door 3, 5 of 3 en 5 deelbaar is anders wordt het nummer gewoon geprint
+        for(var i = 1; i <= 100; i++){
+            if(i%3 === 0) {
+                console.log('' + i + ' modulo 3 = 0!');
+            } else if(i%5 === 0) {
+                console.log('' + i + ' modulo 5 = 0!');
+            } else if(i%3 === 0 && i%5 === 0) {
+                console.log('' + i + ' modulo 3 en 5 = 0!');
+            } else {
+                console.log(i);
+            }
+        }
+    </script>
+</body>
+</html>

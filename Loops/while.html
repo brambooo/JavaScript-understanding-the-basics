@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>While loop</title>
+</head>
+<body>
+    <script>
+        // While loop
+        var i = 0;
+        while(i <= 10) {
+            console.log(i);
+            i++;
+        }
+
+        // Other do example
+        var isConfirmed = confirm('Wilt u meer informatie?');
+
+        while(isConfirmed) {
+            alert('Informatie informatie informatie...');
+            var bMoreInfo = confirm('Wilt u meer informatie over dit specifieke onderwerp?');
+
+            if(bMoreInfo) {
+                alert('Nog meer informatie informatie informatie...');
+                var subject = prompt('Geef aan waar u nog meer benieuwd naar bent:', 'Typ het onderwerp in');
+
+                if(subject) {
+                    alert('Uw gekozen onderwerp is: ' + subject);
+                }
+            } else {
+                isConfirmed = false;
+            }
+        }
+
+        // Do while loop
+        // Keep in mind: the do will always be executed once.
+        var i = 1;
+        do {
+            console.log(i);
+            i++;
+        } while(i <= 10);
+    </script>
+</body>
+</html>

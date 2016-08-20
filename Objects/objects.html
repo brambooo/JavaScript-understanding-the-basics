@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objects</title>
+</head>
+<body>
+    <script>
+        /* -------------------------------------------------------------------------
+        1. Simple JS object with only properties
+           We call this object literals
+           object literals are objects that are created with the car keyword and key/value pairs in between curly brackets.
+        --------------------------------------------------------------------------*/
+        var simplePersonObj = {
+            // Properties
+            name: 'Bram Reinold',
+            age: 23,
+            school: 'Avans Hogeschool',
+        }
+
+
+        /* -------------------------------------------------------------------------
+         2. Simple JS object with properties and methods
+         --------------------------------------------------------------------------*/
+        var personObjWithMethods = {
+            // Properties
+            name: 'Bram Reinold',
+            age: 23,
+            school: 'Avans Hogeschool',
+
+            // Add methods to the object
+
+            showPersonData: function() {
+                console.log('Gegevens: \n naam: ' +  person.name + ' \n leeftijd: ' + person.age + '\n school: ' + person.school);
+            },
+            updateAge: function(age) {
+                person.age = age;
+            }
+        }
+
+        /* -------------------------------------------------------------------------
+         3. Advanced way of creating objects with an constructor, properties and methods
+            This is an more efficient way of creating reusable objects
+
+            this way of creating objects are called constructor functions
+         --------------------------------------------------------------------------*/
+        function advancedPersonObj(name, age, school, city) {
+            this.name = name;
+            this.age = age;
+            this.school = school;
+            this.city = city;
+
+            // Methods
+            this.showInfo = function() {
+               return 'Naam: ' + this.name + ", leeftijd: " + this.age + ", school: " + this.school + ", woonplaats: " + this.city + ".";
+            }
+
+            // Setter
+            this.setName = function(name) {
+                this.name = name;
+            }
+
+            // Getter
+            this.getName = function() {
+                return name;
+            }
+
+            // We could add much more methods... But we know know how it works!
+        }
+
+        // Initialize an advanced person object
+        var bram = new advancedPersonObj('Bram Reinold', 23, 'Avans', 'Made');
+
+        // How access any object property that we just declared above:
+        // call the variable with a dot to see the key of any property and so we get the value of it.
+        console.log(bram.name);
+
+        // We could also access a key with other straight brackets (e.g. person['school']):
+        console.log(bram['age']);
+
+        // Call a method
+        console.log(bram.showInfo());
+
+//        function alert() {
+//            console.log('overridden alert');
+//        }
+//
+//        alert();
+//        alert();
+//        alert();
+
+
+    </script>
+</body>
+</html>

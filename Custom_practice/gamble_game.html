@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Little Gamble Game</title>
+</head>
+<body>
+
+<h1>Gok Game</h1>
+
+<h2>Scores inzien:</h2>
+Gegokt:<span id="gamleAmount">0</span><br>
+Zwart:<span id="amountBlack">0</span><br>
+Rood:<span id="amountRed">0</span><br><br>
+
+Gewonnen: <span id="wins">0</span><br>
+Verloren: <span id="loses">0</span>
+
+<h2>Gokken:</h2>
+<button style="background: black; color: white;" onclick="setBlack()">Zwart</button>
+<button style="background: red;  color: white;" onclick="setRed()">Rood</button>
+
+<h3>Score:</h3>
+<span id="score"></span>
+
+<br>
+<br>
+<br>
+<br>
+
+<button onclick="resetGame()">Game herstarten</button>
+<script>
+    // Random gamble game where you have 50% change to win
+
+    var iAmount = 0; // gamble amounts
+    var iAmountBlack = 0;
+    var iAmountRed = 0;
+    var iWins = 0;
+    var iLost = 0;
+    var currentScore = "";
+
+    function setBlack() {
+        iAmountBlack += 1;
+        gamble(0);
+    }
+
+    function setRed() {
+        iAmountRed += 1;
+        gamble(1);
+    }
+
+    function gamble(input) {
+
+        // Update gamble amount
+        iAmount += 1;
+
+        // Get random number, round it up so we get 0 or 1.
+        var result = Math.round(Math.random());
+        console.log(result);
+
+        // Check if the gamble has won or loses
+        checkGambleResult(input, result)
+
+        if(result === 0) {
+            // Black wins
+            // Update amount black wins
+            iAmountBlack += 1;
+            currentScore = 'Zwart';
+        } else {
+            // Red wins
+            // Update amount red wins
+            iAmountRed += 1;
+            currentScore = 'Rood';
+        }
+
+        // Update screen with measurements
+        updateScreenResults();
+    }
+
+    function checkGambleResult(input, result) {
+        if(input === result) {
+            // Update wins
+            iWins += 1;
+        } else {
+            // Update lost
+            iLost += 1;
+        }
+    }
+
+    function resetGame() {
+        iAmount = 0;
+        iAmountBlack = 0;
+        iAmountRed = 0;
+        iWins = 0;
+        iLost = 0;
+        currentScore = 0;
+
+        // Update screen
+        updateScreenResults();
+    }
+
+    function updateScreenResults() {
+        document.getElementById('gamleAmount').innerText = iAmount;
+        document.getElementById('amountBlack').innerText = iAmountBlack;
+        document.getElementById('amountRed').innerText = iAmountRed;
+        document.getElementById('wins').innerText = iWins;
+        document.getElementById('loses').innerText = iLost;
+        document.getElementById('score').innerText = currentScore;
+    }
+
+</script>
+</body>
+</html>

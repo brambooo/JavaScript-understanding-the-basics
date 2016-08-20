@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conditional Statements</title>
+</head>
+<body>
+    <script>
+
+        // Conditional checks is something is true or false.
+
+        /* JavaScript false values are, also called falsy values:
+         0,
+         -0,
+         NaN,
+         false,
+         null,
+         undefined
+        */
+
+        /* JavaScript true values:
+        if it isn't on above falsy list it is true!
+        */
+
+        var a = 10;
+
+        // Will this expression be true?
+        if(10) {
+            // Yes because it isn't on the falsy list!!!
+            alert('waar');
+        }
+
+        var a = 0;
+        if(a) {
+            // Will not be executed, because 0 is false
+            alert('niet waar');
+        }
+
+        // Bad redundant examples, shouldn't be compared with true/false just a is enough to check if it is true or not
+        if(a === true) {
+            // ...
+        }
+
+        if(a === false) {
+            // ...
+        }
+
+    </script>
+</body>
+</html>

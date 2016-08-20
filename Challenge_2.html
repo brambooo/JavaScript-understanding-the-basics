@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Challenge 2 - with objects</title>
+</head>
+<body>
+<script>
+    // Global variables
+    var outcome = "";
+
+    // Character class
+    function Character(name, type) {
+
+        // Properties
+        this.name = name;
+        this.type = type;   // character type, we could choose between: warrior, hunter, mage
+        this.health = 10;
+        this.strength = 10;
+
+        // Methods
+
+        this.doAttack = function() {
+            var damage =  randomCalculateAttack(this.strength);
+            // Damage minus health is new health
+            this.health = (this.health - damage);
+        }
+        this.getHealth = function() {
+            return this.health;
+        }
+
+    }   // end Character class
+
+    // DEBUGGING:
+//    var user = new Character('Test user', 'warrior');
+//    console.log(user.getHealth());
+//    user.doAttack();
+//    console.log(user.getHealth());
+//    user.doAttack();
+//    var number = Math.round( Math.random() * 2) + 1;
+//    console.log('test ' + number );
+//
+//    var result = randomGetEnemy();
+//    console.log(result);
+//    throw new Error();
+
+    // Start game
+    /*
+     1) Let the user choose a name and type
+     2) Let him fight to another character
+     2.1) Choose random a character to fight with
+     3) Choose random who can start fighting (user or computer)
+     */
+
+    //    var characterObj = new Character()
+
+    // Declare blank string variables
+    var name = "";
+    var type = "";
+
+    // Keep looping while name or type is blank (not filled in)
+    while (name === "" || type === "") {
+
+        // Ask for name when blank
+        if (name === "") {
+            var nameInput = prompt('Onder welke naam wil je het spel spelen?');
+            // Check if input is a truthy value (so not null)
+            if (nameInput) {
+                // assign input to name if it is a truthy value
+                name = nameInput;
+                console.log('naam ingevuld!');
+            }
+        }
+
+        // Ask for type when is blank
+        if (type === "") {
+            var typeInput = prompt('Kies je charachter type uit. Er valt te kiezen tussen: Warrior, Hunter, Mage.').toLowerCase();
+            // Check if input is a truthy value (so not null)
+            if (typeInput) {
+                // assign input to name if it is a truthy value
+                type = typeInput;
+                console.log('type ingevuld!');
+            }
+        }
+
+    } // end while loop
+
+    // Initialize character object
+    var character = new Character(name, type);
+
+    // Based on the type we will set the health and strength
+    setCharacterStats(character);
+
+    // Give a welcome message with user input and check if the user is ready to start the game
+    var isConfirmed = false;
+    while(!isConfirmed) {
+        // Keep asking for confirm
+        isConfirmed = confirm('Welkom, ' + name + '! Je hebt gekozen voor ' + type + ' ben je klaar voor het gevecht?');
+    }
+
+     alert('Laten we beginnen en een vijand zoeken...');
+    var enemyType = randomGetEnemy();
+     alert('Je vijand is een ' + enemyType);
+
+    // Initialize enemyObj
+    enemy = new Character('Enemy', enemyType);
+
+    // Based on the type we will set the health and strength
+    setCharacterStats(enemy);
+
+    // Fighting loop
+    while(character.health > 0) {
+
+        // Attack enemy
+        var isAttackConfirmed = confirm('Bevestig aanval!');
+        if(isAttackConfirmed) {
+            // Do attack
+            character.doAttack();
+
+            alert('[BRAM] VALT [VIJAND] aan met een aanvalschade van ' + damage + ' en een totale gezondheid van ' + enemy.getHealth());
+            if(enemy.health <= 0) {
+                break;
+                alert('Je hebt gewonnen!!!');
+            }
+        }
+
+        // Collect attack from enemy
+        var damage = enemy.doAttack();
+
+        alert('[VIJAND] VALT' +   [BRAM] aan met een aanvalschade van ' + damage + ' en een totale gezondheid van ' + character.getHealth());
+        if(character.health <= 0) {
+            break;
+            alert('Je hebt verloren!!! :(');
+        }
+
+    }
+
+
+    /**
+     * Functions
+     * Which functions do we need?
+     * setCharacterStats()
+     * doAttack()
+     * updateStats()
+     */
+
+    function setCharacterStats(character) {
+        // Based on the type we will set the health and strength
+        switch(character.type) {
+            case 'warrior':
+                character.health = 130;
+                character.strength = 8;
+                break;
+            case 'ranger':
+                character.health = 100;
+                character.strength = 11;
+                break;
+            case 'mage':
+                character.health = 90;
+                character.strength = 12;
+                break;
+        }
+    }
+
+    function randomCalculateAttack(strength) {
+        // Attacks are based on luck
+        var attackPrecision = Math.round( Math.random() * 2);  // Can be between 0 and 2
+        console.log('attackPrecision: ' + attackPrecision);
+
+        // Calculate damage based on attack precision
+        // attackPrecision 0 = miss
+        // attackPrecision 1 = is really good, means health will be minus the damage
+        // attackPrecision 2 = average, means health will be minus damage divided by 2
+
+        var damageDone = Math.round( Math.random() * strength );   // total damage can be between 0 (miss) and max strength
+        console.log('damageDone: ' + attackPrecision);
+
+        var damage = 0;
+
+        // Return damage based on damageDone and luck
+        switch(attackPrecision) {
+            case 0:
+                damage = 0;
+                break;
+            case 1:
+                damage = damageDone;
+                break;
+            case 2:
+                damage = Math.round(damageDone);
+                break;
+        }
+        return damage;
+        console.log('retuned damage based on damageDone and luck: ' + damage);
+    }
+
+    function randomGetEnemy() {
+        var i = Math.round( Math.random() * 2) + 1; // between 1 and 3 not zero
+        // Return damage based on damageDone and luck
+        switch(i) {
+            case 1:
+                return 'warrior'
+                break;
+            case 2:
+                return 'ranger'
+                break;
+            case 3:
+                return 'mage';
+                break;
+        }
+    }
+
+
+</script>
+</body>
+</html>

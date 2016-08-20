@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Print Currency</title>
+</head>
+<body>
+    <script>
+        var price = 50.99;  // American way with a dot
+
+        // Log the price as a string, with 2 zero's behind the dot
+        document.write(price.toFixed(2));
+
+        document.write('</br></br>');
+
+        // EU conversion
+        document.write(price.toFixed(2).replace('.', ','));
+
+        document.write('</br></br>');
+
+        // Test function
+        document.write(printCurrency(55.50));
+
+        // Function we create for it
+        function printCurrency(price) {
+            return price.toFixed(2).replace('.', ',');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loop over array</title>
+</head>
+<body>
+    <script>
+
+        // Declare empty array
+        var myFriends = [];
+
+        // Add some items (in our case friends) to the array
+        myFriends.push('Bram');
+        myFriends.push('Koen');
+        myFriends.push('Frits');
+        myFriends.push('Anita');
+        myFriends.push('Willem');
+
+        console.log('Foreach loop: \n');
+        // Greet all friends with a foreach loop
+        for(var friend in myFriends) {
+            console.log('Greet ' + myFriends[friend]);
+        }
+
+        console.log('For loop: \n');
+        // Greet all friends with a simple for loop
+        for(var i = 0; i <= myFriends.length; i++) {
+            console.log('Greet ' + myFriends[i]);
+        }
+
+    </script>
+</body>
+</html>
