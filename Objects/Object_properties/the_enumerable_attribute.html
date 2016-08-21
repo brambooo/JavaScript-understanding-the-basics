@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Using the Enumerable Attribute</title>
+</head>
+<body>
+    <script>
+        // Prevent us to use any deprecated parts of JS and prevent us making changes if we set writable, enumerable or configurable false at objects
+        'use strict';
+        var person = {
+            name: 'Bram',
+            age: 23,
+            school: 'Avans'
+        }
+
+        // Display all object keys
+        // Objects.keys() returned an array with all the properties except if we set enumerable false
+        console.log('Object keys met overal enumerable true:');
+        console.log(Object.keys(person));
+
+        // Set enumerable false for school property
+        // enumerable false also affects JSON serialization of the object... Keep that in mind!
+        Object.defineProperty(person, 'school', {enumerable:false})
+        console.log('Object keys met school enumerable false:');
+        console.log(Object.keys(person));
+
+        // Show the JSON serialization
+        console.log('JSON serialization via JSON.stringify:');
+        console.log(JSON.stringify(person));
+    </script>
+</body>
+</html>

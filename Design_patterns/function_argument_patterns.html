@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function argument patterns</title>
+</head>
+<body>
+    <script>
+        function testFunction(a, b, c) {
+            return a + b + c;
+        }
+
+        /**
+         * testFunction2()
+         * is a function where we use the arguments object to get dynamically an amount of parameters.
+         * we could now use this function with a custom amount of parameters, we will loop through them
+         *
+         * arguments.length is based on the specified given parameters when this function is called
+         * @returns amount as a {number}
+         */
+        function testFunction2() {
+            var amount = 0;
+            for(var i = 0; i < arguments.length; i++) {
+                amount = amount + arguments[i];
+            }
+            return amount;
+        }
+
+        // testFunction1()
+        console.log('Test 1 with normal function');
+        console.log(testFunction(1, 2, 3));             // 6
+        console.log(testFunction(1, 2, 3, 4));          // 6 - last param isn't used
+        console.log(testFunction(1, 2));                // NaN - because 3 param isn't set and that will return undefined 1 + 2 + undefined = NaN
+
+        // testFunction2() with the arguments object
+        console.log('Test 2 with arguments object');
+        console.log(testFunction2(1, 2, 3));       // 6
+        console.log(testFunction2(2, 2, 2, 2));    // 8
+    </script>
+</body>
+</html>

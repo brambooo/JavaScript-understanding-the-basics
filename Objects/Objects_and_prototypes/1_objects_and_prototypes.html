@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objects and Prototypes</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        // How to add a property to a function's prototype?
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        // This means that each of our Person objects has a property discount with a value 3
+        Person.prototype.discount = 3;
+
+        //
+        console.log(Person.prototype);
+
+        // Objects that derive from the Person constructor function
+        var bram = new Person('Bram', 23);
+        var koen = new Person('Koen', 20);
+
+        // It is possible to change the above declared prototype discount value only explicitly for a created object (in this case bram)
+        // We didn't change here the prototype discount property. We added a new property to the bram object.
+        // We could now access both values from the prototype discount property and the new declared discount property (see logging)
+        bram.discount = 20;
+
+        // Now we see at the logging that bram has a discount of 20 and koen 3.
+        console.log(bram);
+        console.log(koen);
+
+        // Get both discount properties
+        console.log('\nDiscount properties Bram:');
+        console.log('Prototype discount property: ' + bram.discount);
+        console.log('Nieuw discount property: ' + bram.__proto__.discount);
+
+        // What we see here is that bram had in the beginning not a real discount property, the prototype only did.
+        // But how could we still get access to a discount property when we call it on every object that we create of Person?
+        // We could even check if a Person object e.g. Bram has a discount property:
+        console.log('\nBram object keys:');
+        console.log(Object.keys(bram));
+
+        // We see here that it didn't have any discount property.
+        // When we ask for a property and JS cannot find it at an object, JS ask then its prototype for the property.
+
+        // We could check for a prototype property with this method:
+        console.log('Controleren of Person prototype bepaalde properties heeft:');
+        console.log('bram.hasOwnpropery(name)? '+ bram.hasOwnProperty('name')); // return true when the prototype has that property else flase
+        console.log('koen.hasOwnpropery(discount)? '+  koen.hasOwnProperty('discount')); // return false because the prototype itself hasn't a discount property, we only added it to bram
+    </script>
+</body>
+</html>

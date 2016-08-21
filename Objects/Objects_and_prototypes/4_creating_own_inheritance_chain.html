@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating our own inheritance chain</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        // Parent animal function
+        function Animal() {}
+        // Add speak function to parent animal function
+        Animal.prototype.speak = function() {
+            console.log('Speak');
+        }
+
+        // Child Dog function
+        function Dog(name, age) {
+            Animal.call(this);
+            this.name = name;
+            this.age = age;
+        }
+
+        // Assign animal as the prototype of the Dog function
+        // We use Object.create() to set the prototype, because this method doesn't call the Animal function (instead of using new Animal())
+        // It just set that function as the prototype and set up the prototype chain
+
+        // If we did call new Animal instead, the Animal function would execute, and we don't want that to happen!
+        Dog.prototype = Object.create(Animal.prototype);
+
+        // Initialize object
+        var dogLuuk = new Dog('Luuk', 10);
+        // Use speak method
+        dogLuuk.speak();
+
+        console.log(dogLuuk);
+
+        Dog.prototype.constructor = Dog;
+
+        var dogSimba = new Dog('Simba', 10);
+        console.log(dogSimba);
+
+
+
+
+    </script>
+</body>
+</html>

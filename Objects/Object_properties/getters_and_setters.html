@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Getters and Setters</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        var person = {
+            // Properties
+            firstName: 'Bram',
+            lastName: 'Reinold'
+        }
+
+        // Declare object getter and setter
+        Object.defineProperty(person, 'firstName', {
+            get: function() {
+                return this.firstName + ' ' + this.lastName;
+            },
+            set: function(firstName) {
+                this.firstName = firstName;
+                this.lastName = firstName;
+            }
+        })
+
+        // Call object getter and setter
+        console.log(person.get);
+        person.set('Bert');
+        console.log(person.get());
+
+        // Setter not working yet, could look at:
+        // http://javascriptplayground.com/blog/2013/12/es5-getters-setters/
+        // I don't really see the point here could also create these getters and setters myself...
+
+    </script>
+</body>
+</html>

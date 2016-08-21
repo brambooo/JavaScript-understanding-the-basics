@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        /*
+        See JS summary > JS Prototypes and Inheritance > Changing a function's prototype
+         */
+
+        // Function prototype
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        // Add prototype property to function prototype
+        Person.prototype.discount = 5;
+
+        var bram = new Person('Bram', 23);
+        var koen = new Person('Koen', 20);
+
+        // Check property discount for both objects
+        console.log('1e check');
+        console.log(bram.discount); // 5
+        console.log(koen.discount);  // 5
+
+        // Change prototype discount value
+        Person.prototype.discount = 2;
+
+        // Check property discount for both objects (again)
+        console.log('\n2e check - na wijziging van prototype property waarde naar 2');
+        console.log(bram.discount);  // 2
+        console.log(koen.discount);  // 2
+
+        // Let person prototype reference to a new object (now there will be a new Person prototype object created in memory)
+        Person.prototype = {discount: 10};
+
+        // Check property discount for both objects (again)
+        console.log('\n3e check - na het verwijzen van het prototype naar een nieuw object');
+        console.log(bram.discount);  // still 2
+        console.log(koen.discount);  // still 2
+
+        // Both objects are still references to the property in memory. When we create a new object, that object will be pointed to the new prototype reference
+        // with the new discount value of 10
+
+        // Initialize a new object that is pointed to the new prototype reference
+        var michel = new Person('Michel', 23);
+
+        // Check property discount for both objects (again)
+        console.log('\n4e check - het nieuwe object verwijst nu naar een nieuw referentie object');
+        console.log(michel.discount);  // 10
+
+
+
+    </script>
+</body>
+</html>

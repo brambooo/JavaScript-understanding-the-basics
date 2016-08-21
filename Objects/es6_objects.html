@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>ECMAScript 6 Classes to create JS Objects</title>
 </head>
 <body>
+    <script>
+        /*
 
+         ECMAScript 6 Classes to create JS Objects
+         -----------------------------------------
+         ES6 provides now a class functionality to create objects
+         Behind the scenes this ES6 object classes functionality create in the same way objects as object literals and constructor functions
+
+         */
+
+        class Person {
+
+            // Constructor
+            constructor(name, age, school) {
+                this.name = name,
+                this.age = age,
+                this.school = school
+            }
+
+            // Methods
+            test() {
+                return 'test';
+            }
+
+            getName() {
+                return this.name;
+            }
+        }
+
+        // Initialize object
+        var bram = new Person('Bram', 23, 'Avans');
+
+        // Show object data
+        console.log(bram);
+        console.log(bram.test());
+        console.log(bram.getName());
+    </script>
 </body>
 </html>

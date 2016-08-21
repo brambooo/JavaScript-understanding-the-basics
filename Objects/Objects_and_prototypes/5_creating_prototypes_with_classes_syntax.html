@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Creating Prototypes with the class syntax</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        /*
+         See JS summary > JS Prototypes and Inheritance > ...
+
+         This is an other way of creating prototypes, it is the same as we did before but with another syntax
+         In my opinion this is a cleaner way of creating prototypes.
+         using the class syntax is ES6.
+         */
+
+        // Parent prototype class
+        class Animal {
+
+            // Constructor
+            constructor(voice) {
+                this.voice = voice || 'Hallo'   // default voice is hallo if no voice is filled in
+            }
+
+            // Methods
+            speak() {
+                return this.voice;
+            }
+        }
+
+        // Child prototype class
+        class Dog extends Animal {
+
+            // Constructor
+            constructor(name, age) {
+                // super means that we call the constructor of the parent class
+                super('Woef')
+                this.name = name;
+                this.age = age;
+            }
+        }
+
+        var dog = new Dog('Luuk', 10);
+        console.log(dog);
+        console.log(dog.speak());
+
+
+    </script>
+</body>
+</html>

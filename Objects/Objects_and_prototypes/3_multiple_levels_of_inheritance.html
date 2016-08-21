@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiple levels of Inheritance</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        /*
+         See JS summary > JS Prototypes and Inheritance > Multiple Levels of Inheritance
+         */
+
+        // Function prototype
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        // Initialize a new object
+        var bram = new Person('Bram', 23);
+
+        // With __proto__ we can get the actual object in the current object chain
+        console.log(bram.__proto__);                        // Our object (Person)
+        console.log(bram.__proto__.__proto__);              // Default JS object
+        console.log(bram.__proto__.__proto__.__proto__);    // null
+
+        // We see here we have a chain of 2:
+        // 1) Person object > 2) Default JS object
+        // The third ask of an object doesn't return anything because the default object doesn't have a parent prototype.
+
+    </script>
+</body>
+</html>
